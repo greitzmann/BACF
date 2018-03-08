@@ -252,14 +252,29 @@ for frame = 1:numel(s_frames)
         B = S_xx + (T * mu);
         S_lx = sum(conj(model_xf) .* l_f, 3);
         S_hx = sum(conj(model_xf) .* h_f, 3);
-        g_f = (((1/(T*mu)) * bsxfun(@times, yf, model_xf)) - ((1/mu) * l_f) + h_f) - ...
-            bsxfun(@rdivide,(((1/(T*mu)) * bsxfun(@times, model_xf, (S_xx .* yf))) - ((1/mu) * bsxfun(@times, model_xf, S_lx)) + (bsxfun(@times, model_xf, S_hx))), B);
+        g_f = (((1/(T*mu)) * bsxfun(@times, yf, model_xf)) - ((1/mu) * l_f)  + h_f) - ...
+            bsxfun(@rdivide,(((1/(T*mu)) * bsxfun(@times, model_xf, (S_xx .* yf))) ...
+            - ((1/mu) * bsxfun(@times, model_xf, S_lx)) + (bsxfun(@times, model_xf, S_hx))), B);
         
         %   solve for H
         h = (T/((mu*T)+ params.admm_lambda))  *   ifft2((mu*g_f) + l_f);
+        
+     figure(231);
+     imagesc(mean(abs(h), 3));
+     colorbar;
+     axis image;
+     title('before crop');
+     
         [sx,sy,h] = get_subwindow_no_window(h, floor(use_sz/2) , small_filter_sz);
         t = single(zeros(use_sz(1), use_sz(2), size(h,3)));
         t(sx,sy,:) = h;
+        
+     figure(232);
+     imagesc(mean(abs(h), 3));
+     colorbar;
+     axis image;
+     title('after crop');
+
         h_f = fft2(t);
         
         %   update L
