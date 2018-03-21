@@ -259,21 +259,21 @@ for frame = 1:numel(s_frames)
         %   solve for H
         h = (T/((mu*T)+ params.admm_lambda))  *   ifft2((mu*g_f) + l_f);
         
-     figure(231);
-     imagesc(mean(abs(h), 3));
-     colorbar;
-     axis image;
-     title('before crop');
+%      figure(231);
+%      imagesc(mean(abs(h), 3));
+%      colorbar;
+%      axis image;
+%      title('before crop');
      
         [sx,sy,h] = get_subwindow_no_window(h, floor(use_sz/2) , small_filter_sz);
         t = single(zeros(use_sz(1), use_sz(2), size(h,3)));
         t(sx,sy,:) = h;
         
-     figure(232);
-     imagesc(mean(abs(h), 3));
-     colorbar;
-     axis image;
-     title('after crop');
+%      figure(232);
+%      imagesc(mean(abs(h), 3));
+%      colorbar;
+%      axis image;
+%      title('after crop');
 
         h_f = fft2(t);
         

@@ -19,9 +19,9 @@ clear; clc; close all;
 
 
     video_base_path = '/home/cheng/Database/VTB100/';
-    choose = 0;
+    choose = 1;
     if choose == 0
-        video = 'Ironman';
+        video = 'Basketball';
         if nargin < 1
             video_path = strcat(video_base_path, video);
         else
@@ -30,6 +30,7 @@ clear; clc; close all;
         [seq, ground_truth] = load_video_info([video_path]);
     else
         video = choose_video(video_base_path);   
+        video_path = strcat(video_base_path, video);
         [seq, ground_truth] = load_video_info([video_base_path video]);
     end
 

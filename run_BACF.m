@@ -43,9 +43,10 @@ params.scale_step       = 1.01;
 params.wsize    = [seq.init_rect(1,4), seq.init_rect(1,3)];
 params.init_pos = [seq.init_rect(1,2), seq.init_rect(1,1)] + floor(params.wsize/2);
 params.s_frames = seq.s_frames;
-params.no_fram  = seq.en_frame - seq.st_frame + 1;
-params.seq_st_frame = seq.st_frame;
-params.seq_en_frame = seq.en_frame;
+params.no_fram =  numel(params.s_frames);
+% params.no_fram  = seq.en_frame - seq.st_frame + 1;
+% params.seq_st_frame = seq.st_frame;
+% params.seq_en_frame = seq.en_frame;
 
 %   ADMM parameters, # of iteration, and lambda- mu and betha are set in
 %   the main function.

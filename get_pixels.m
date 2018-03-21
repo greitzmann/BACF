@@ -29,8 +29,7 @@ im_patch = im(ys, xs, :);
 if isempty(resize_target)
     resized_patch = im_patch;
 else
-%     resized_patch = mexResize(im_patch,resize_target,'auto');
-    resized_patch = imresize(im_patch,resize_target);
+    resized_patch = mexResize(im_patch,resize_target,'auto');
 end
 
 end
