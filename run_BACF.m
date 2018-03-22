@@ -28,7 +28,8 @@ params.search_area_scale = 5;           % the size of the training/detection are
 params.filter_max_area   = 50^2;        % the size of the training/detection area in feature grid cells
 
 %   Learning parameters
-params.learning_rate       = lr;        % learning rate
+%params.learning_rate       = lr;        % learning rate
+params.learning_rate       = 0.013;        % learning rate
 params.output_sigma_factor = 1/16;		% standard deviation of the desired correlation output (proportional to target)
 
 %   Detection parameters
@@ -43,7 +44,7 @@ params.scale_step       = 1.01;
 params.wsize    = [seq.init_rect(1,4), seq.init_rect(1,3)];
 params.init_pos = [seq.init_rect(1,2), seq.init_rect(1,1)] + floor(params.wsize/2);
 params.s_frames = seq.s_frames;
-params.no_fram =  numel(params.s_frames);
+params.no_fram = numel(params.s_frames);
 % params.no_fram  = seq.en_frame - seq.st_frame + 1;
 % params.seq_st_frame = seq.st_frame;
 % params.seq_en_frame = seq.en_frame;
@@ -54,7 +55,7 @@ params.admm_iterations = 2;
 params.admm_lambda = 0.01;
 
 %   Debug and visualization
-params.visualization = 1;
+params.visualization = 0;
 
 %   Run the main function
 results = BACF_optimized(params);
